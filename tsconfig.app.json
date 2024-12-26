@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "composite": true,               // Required for project references
+    "declaration": true,             // Generates declaration files for references
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"]
+}

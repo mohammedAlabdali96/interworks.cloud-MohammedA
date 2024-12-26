@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "tests/**/*", "src/shims-vue.d.ts"]
+}
