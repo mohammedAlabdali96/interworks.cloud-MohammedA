@@ -13,6 +13,7 @@
     "@types/jest": "^29.5.14",
     "@types/mocha": "^10.0.10",
     "jest-environment-jsdom": "^29.7.0",
+    "pinia": "^2.3.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "vue": "3"
