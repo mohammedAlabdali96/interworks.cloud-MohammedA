@@ -11,14 +11,19 @@
   },
   "dependencies": {
     "@types/jest": "^29.5.14",
+    "@types/lodash": "^4.17.13",
     "@types/mocha": "^10.0.10",
     "jest-environment-jsdom": "^29.7.0",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "pinia": "^2.3.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "vue": "3"
+    "vue": "3",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/test-utils": "^2.4.0-alpha.2",
     "@vue/tsconfig": "^0.7.0",
