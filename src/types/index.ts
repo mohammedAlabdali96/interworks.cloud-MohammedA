@@ -6,7 +6,12 @@ export interface Product {
   description: string;
 }
 
+export interface BasketItem extends Product {
+  quantity: number;
+}
+
 export interface ProductState {
+  basket: BasketItem[];
   products: Product[];
   currentPage: number;
   totalPages: number;
