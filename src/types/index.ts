@@ -12,6 +12,5 @@ export interface ProductState {
   totalPages: number;
   pageSize: number;
   totalItems: number;
-  searchQuery: string;
   isLoading: boolean;
 }
