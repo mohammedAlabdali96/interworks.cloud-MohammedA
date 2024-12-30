@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import type { Product, ProductState } from "../types";
 import { fetchProducts } from "../api/products";
+import { ApiError } from "../utils/errors";
 
 export const useProductStore = defineStore("products", {
   state: (): ProductState => ({
@@ -11,6 +12,7 @@ export const useProductStore = defineStore("products", {
     pageSize: 9,
     totalItems: 0,
     isLoading: false,
+    error: null,
   }),
 
   actions: {
@@ -21,6 +23,8 @@ export const useProductStore = defineStore("products", {
       category?: string
     ) {
       this.isLoading = true;
+      this.error = null;
+
       try {
         const response = await fetchProducts({
           page,
@@ -33,6 +37,14 @@ export const useProductStore = defineStore("products", {
         this.totalItems = response.totalItems;
         this.totalPages = response.totalPages;
         this.currentPage = page;
+      } catch (error) {
+        this.error =
+          error instanceof ApiError
+            ? error.message
+            : "An unexpected error occurred";
+        this.products = [];
+        this.totalItems = 0;
+        this.totalPages = 0;
       } finally {
         this.isLoading = false;
       }

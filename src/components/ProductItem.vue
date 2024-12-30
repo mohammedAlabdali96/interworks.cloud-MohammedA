@@ -1,19 +1,3 @@
-<script setup lang="ts">
-import { defineProps } from "vue";
-import { useProductStore } from "../stores/productStore";
-import type { Product } from "../types";
-
-const props = defineProps<{
-  product: Product;
-}>();
-
-const store = useProductStore();
-
-const handleAddToCart = () => {
-  store.addToBasket(props.product);
-};
-</script>
-
 <template>
   <div class="border rounded-lg p-4 shadow hover:shadow-lg transition-shadow">
     <img
@@ -47,3 +31,30 @@ const handleAddToCart = () => {
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import { useProductStore } from "../stores/productStore";
+import type { Product } from "../types";
+
+export default defineComponent({
+  name: "ProductItem",
+  props: {
+    product: {
+      type: Object as () => Product,
+      required: true,
+    },
+  },
+  setup(props) {
+    const store = useProductStore();
+
+    const handleAddToCart = () => {
+      store.addToBasket(props.product);
+    };
+
+    return {
+      handleAddToCart,
+    };
+  },
+});
+</script>

@@ -19,4 +19,5 @@ export interface ProductState {
   pageSize: number;
   totalItems: number;
   isLoading: boolean;
+  error: string | null;
 }
