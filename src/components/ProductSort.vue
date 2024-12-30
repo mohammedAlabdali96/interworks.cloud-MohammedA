@@ -1,17 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 const router = useRouter();
 const route = useRoute();
 const sortBy = ref(route.query.sort as string || '');
 
+watch(
+  () => route.query.sort,
+  (newSort) => {
+    sortBy.value = newSort as string || '';
+  }
+);
+
 const handleSort = (event: Event) => {
   const target = event.target as HTMLSelectElement;
   router.replace({
     query: {
       ...route.query,
-      sort: target.value || undefined
+      sort: target.value || undefined,
+      page: '1' // Reset to first page when sorting changes
     }
   });
 };

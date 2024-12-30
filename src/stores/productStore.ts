@@ -1,23 +1,34 @@
-import { defineStore } from 'pinia';
-import type { Product, ProductState } from '../types';
-import { fetchProducts } from '../api/products';
+import { defineStore } from "pinia";
+import type { Product, ProductState } from "../types";
+import { fetchProducts } from "../api/products";
 
-export const useProductStore = defineStore('products', {
+export const useProductStore = defineStore("products", {
   state: (): ProductState => ({
     basket: [],
     products: [],
     currentPage: 1,
     totalPages: 0,
-    pageSize: 10,
+    pageSize: 9,
     totalItems: 0,
-    isLoading: false
+    isLoading: false,
   }),
 
   actions: {
-    async fetchProducts(page: number, search?: string) {
+    async fetchProducts(
+      page: number,
+      search?: string,
+      sortBy?: string,
+      category?: string
+    ) {
       this.isLoading = true;
       try {
-        const response = await fetchProducts({ page, search });
+        const response = await fetchProducts({
+          page,
+          pageSize: this.pageSize,
+          search,
+          sortBy,
+          category,
+        });
         this.products = response.data;
         this.totalItems = response.totalItems;
         this.totalPages = response.totalPages;
@@ -28,8 +39,7 @@ export const useProductStore = defineStore('products', {
     },
 
     addToBasket(product: Product) {
-      console.log(product)
-      const existingItem = this.basket.find(item => item.id === product.id);
+      const existingItem = this.basket.find((item) => item.id === product.id);
       if (existingItem) {
         existingItem.quantity++;
       } else {
@@ -38,17 +48,17 @@ export const useProductStore = defineStore('products', {
     },
 
     updateBasketItemQuantity(productId: number, quantity: number) {
-      const item = this.basket.find(item => item.id === productId);
+      const item = this.basket.find((item) => item.id === productId);
       if (item) {
         item.quantity = quantity;
       }
     },
 
     removeFromBasket(productId: number) {
-      const index = this.basket.findIndex(item => item.id === productId);
+      const index = this.basket.findIndex((item) => item.id === productId);
       if (index !== -1) {
         this.basket.splice(index, 1);
       }
-    }
-  }
+    },
+  },
 });

@@ -31,10 +31,14 @@ watch(
   async (query) => {
     const page = parseInt(query.page as string || '1');
     const search = query.search as string;
-    await store.fetchProducts(page, search);
+    const sort = query.sort as string;
+    const category = query.category as string;
+
+    await store.fetchProducts(page, search, sort, category);
   },
   { immediate: true }
 );
+
 
 // Initialize with URL parameters on mount
 onMounted(async () => {

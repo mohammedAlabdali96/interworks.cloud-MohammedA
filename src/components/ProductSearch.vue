@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onUnmounted } from 'vue';
+import { ref, onUnmounted, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import debounce from 'lodash/debounce';
 
@@ -17,6 +17,13 @@ const debouncedSearch = debounce((value: string) => {
     }
   });
 }, 300);
+
+watch(
+  () => route.query.search,
+  (newSearch) => {
+    searchQuery.value = newSearch as string || '';
+  }
+);
 
 const handleSearch = (event: Event) => {
   const target = event.target as HTMLInputElement;
