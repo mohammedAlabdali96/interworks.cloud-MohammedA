@@ -1,5 +1,5 @@
 <template>
-  <div class="border rounded-lg p-4 shadow">
+  <div class="border rounded-lg p-4 shadow dark:bg-gray-800 dark:text-white">
     <h2 class="text-xl font-bold mb-4">Shopping Basket</h2>
 
     <div v-if="basket.length === 0" class="text-gray-500 text-center py-4">
@@ -22,7 +22,8 @@
             <div class="flex items-center">
               <button
                 @click="updateQuantity(item.id, item.quantity - 1)"
-                class="px-2 py-1 border rounded-l"
+                :disabled="item.quantity === 1"
+                class="px-2 py-1 border rounded-l disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:text-gray-400 disabled:border-gray-200 enabled:text-gray-700 enabled:bg-white enabled:border-gray-300 enabled:hover:bg-gray-50"
               >
                 -
               </button>

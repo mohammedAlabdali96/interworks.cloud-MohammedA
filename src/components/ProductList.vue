@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-4">
+  <div class="container mx-auto px-4 py-4">
     <ProductListNav />
 
     <LoadingSpinner v-if="isLoading" />

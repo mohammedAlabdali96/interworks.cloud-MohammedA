@@ -1,12 +1,12 @@
 <template>
-  <div class="border rounded-lg p-4 shadow hover:shadow-lg transition-shadow">
+  <div class="border rounded-lg p-4 shadow hover:shadow-lg transition-shadow dark:bg-gray-800 dark:text-white dark:text-white">
     <img
       :src="product.image"
       :alt="product.name"
       class="w-full h-48 object-cover rounded-md mb-4"
     />
     <h3 class="text-lg font-semibold mb-2">{{ product.name }}</h3>
-    <p class="text-gray-600 mb-2 text-sm line-clamp-2">
+    <p class=" mb-2 text-sm line-clamp-2">
       {{ product.description }}
     </p>
 
